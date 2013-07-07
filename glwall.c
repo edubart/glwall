@@ -173,9 +173,8 @@ int main()
         exit(EXIT_FAILURE);
     }
 
-    glfwWindowHint(GLFW_REFRESH_RATE, 60);
-
-    glfwWindow = glfwCreateWindow(640, 480, "glwall", NULL, NULL);
+    const GLFWvidmode *vidmode = glfwGetVideoMode(glfwGetPrimaryMonitor());
+    glfwWindow = glfwCreateWindow(vidmode->width, vidmode->height, "glwall", NULL, NULL);
     if(!glfwWindow) {
         fputs("failed to create window", stderr);
         glfwTerminate();
@@ -191,7 +190,7 @@ int main()
     glfwSetCursorPosCallback(glfwWindow, cursor_callback);
 
     init();
-    resize(640, 480);
+    resize(vidmode->width, vidmode->height);
 
     while(!glfwWindowShouldClose(glfwWindow)) {
         render();
