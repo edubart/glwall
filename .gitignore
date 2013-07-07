@@ -1,3 +1,4 @@
 build
 glwall
+*.o
 *.kdev4
